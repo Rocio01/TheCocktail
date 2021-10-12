@@ -1,9 +1,7 @@
-import { getCocktailsObject } from './apiHomePage';
+import getCocktailsObject from './apiHomePage';
 
 const loadHomePage = () => {
   window.addEventListener('DOMContentLoaded', getCocktailsObject());
-
-
 };
 
-export { loadHomePage };
+export { loadHomePage as default };

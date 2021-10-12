@@ -1,9 +1,3 @@
-const commentsButton = () => {
-  const button = ducument.createElement('button');
-  button.className = 'btn comments btn-outline-dark';
-  return button;
-};
-
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
   obj.drinks.forEach((drink) => {
@@ -25,20 +19,17 @@ const display = (obj) => {
                       </div>`;
   });
 
-  const hearts = document.querySelectorAll(".heart-like-button");
+  const hearts = document.querySelectorAll('.heart-like-button');
 
-  hearts.forEach((heart)=> {
-    heart.addEventListener("click", () => {
-      if (heart.classList.contains("liked")) {
-        heart.classList.remove("liked");
+  hearts.forEach((heart) => {
+    heart.addEventListener('click', () => {
+      if (heart.classList.contains('liked')) {
+        heart.classList.remove('liked');
       } else {
-        heart.classList.add("liked");
+        heart.classList.add('liked');
       }
     });
-  })
-
-
-
+  });
 };
 
-export { display };
+export { display as default };

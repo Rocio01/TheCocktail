@@ -1,4 +1,4 @@
-import { display } from './displayHomePage';
+import display from './displayHomePage';
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Optional_alcohol';
 const getCocktailsObject = async () => {
@@ -12,4 +12,4 @@ const getCocktailsObject = async () => {
   }
 };
 
-export { getCocktailsObject };
+export { getCocktailsObject as default };
