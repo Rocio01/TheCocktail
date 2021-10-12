@@ -20,6 +20,15 @@ const display = (obj) => {
   });
 
   const hearts = document.querySelectorAll('.heart-like-button');
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+     // pop up card
+     // get id of card by attribute
+      const id = card.getAttribute('id');
+      console.log(id);
+    });
+  });
 
   hearts.forEach((heart) => {
     heart.addEventListener('click', () => {
