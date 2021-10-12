@@ -21,12 +21,28 @@ const display = (obj) => {
 
   const hearts = document.querySelectorAll('.heart-like-button');
   const cards = document.querySelectorAll('.card');
+  const modal = document.querySelector('.modal-m');
+  const content = document.querySelector('.m-content');
   cards.forEach((card) => {
     card.addEventListener('click', () => {
-     // pop up card
-     // get id of card by attribute
-      const id = card.getAttribute('id');
-      console.log(id);
+      modal.classList.remove('d-none');
+      const cardNodes = card.childNodes;
+      const imgSrc = cardNodes[1].getAttribute('src');
+      const title = cardNodes[3].childNodes[1].innerHTML;
+      const div = document.createElement('div');
+      div.innerHTML = `<div class="card h-100">
+      <img src="${imgSrc}" class="card-img-top p-3" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">
+        ${title}
+        </h5>
+        
+      
+      </div>
+  </div>`;
+      console.log(cardNodes[3].childNodes[1].innerHTML);
+      console.log(card);
+      content.appendChild(div);
     });
   });
 

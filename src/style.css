@@ -1,5 +1,5 @@
 body {
-  /* background-color: #5c7aea !important; */
+  background-color: #5c7aea !important;
   padding: 2%;
 }
 
@@ -11,6 +11,18 @@ h3 {
 .card {
   background-color: #e6e6e6 !important;
 }
+
+.modal-m {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1055;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  background-color: #e6e6e6 !important;
+}
+
 
 .heart-like-button {
   background-color: white;
