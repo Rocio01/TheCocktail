@@ -31,24 +31,41 @@ const display = (obj) => {
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
       div.innerHTML = `<div class="card h-100">
+      <header class= "d-flex justify-content-end">
+      <button class="btn-close"></button>
+    </header>
       <img src="${imgSrc}" class="card-img-top p-3" alt="...">
       <div class="card-body">
         <h5 class="card-title text-center">
         ${title}
         </h5>
-        <div class="comments d-flex flex-column align-items-center">
+        <section class="comments d-flex flex-column align-items-center">
         <h4>
           Comments(2)
         </h4>
         <span>03/11/2021 Alex: I would love to buy it</span>
         <span>03/11/2021 Mia: I would love to buy it</span>
-        </div>
+        </section>
+        <section class="add-comment">
+        <h3>Add a comment</h3>
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+           
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+      
+       
+          </div>
+        
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </section>
         </div>   
       
       </div>
   </div>`;
-      console.log(cardNodes[3].childNodes[1].innerHTML);
-      console.log(card);
       content.appendChild(div);
     });
   });
