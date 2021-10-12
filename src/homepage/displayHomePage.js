@@ -31,9 +31,7 @@ const display = (obj) => {
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
       div.innerHTML = `<div class="card h-100">
-      <header class= "d-flex justify-content-end">
-      <button class="btn-close"></button>
-    </header>
+    
       <img src="${imgSrc}" class="card-img-top p-3" alt="...">
       <div class="card-body">
         <h5 class="card-title text-center">
@@ -69,7 +67,10 @@ const display = (obj) => {
       content.appendChild(div);
     });
   });
-
+  const closebtn = document.querySelector('.btn-close');
+  closebtn.addEventListener('click', () => {
+    modal.classList.toggle('d-none');
+  });
   hearts.forEach((heart) => {
     heart.addEventListener('click', () => {
       if (heart.classList.contains('liked')) {
