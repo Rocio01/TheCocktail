@@ -33,10 +33,17 @@ const display = (obj) => {
       div.innerHTML = `<div class="card h-100">
       <img src="${imgSrc}" class="card-img-top p-3" alt="...">
       <div class="card-body">
-        <h5 class="card-title">
+        <h5 class="card-title text-center">
         ${title}
         </h5>
-        
+        <div class="comments d-flex flex-column align-items-center">
+        <h4>
+          Comments(2)
+        </h4>
+        <span>03/11/2021 Alex: I would love to buy it</span>
+        <span>03/11/2021 Mia: I would love to buy it</span>
+        </div>
+        </div>   
       
       </div>
   </div>`;
