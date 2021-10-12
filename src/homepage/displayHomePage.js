@@ -14,10 +14,13 @@ const display = (obj) => {
                           <img src="${drink.strDrinkThumb}" class="card-img-top p-3" alt="...">
                           <div class="card-body">
                             <h5 class="card-title">${drink.strDrink}</h5>
-                            <p class="card-text">
-                              <button type="button" class="btn comments btn-outline-dark col-sm-4">Comments</button>
-                             </p>                            
-                             <div class="heart-like-button float-right"></div>                            
+                            <div class="card-text container">
+                              <button type="button" class="btn comments btn-outline-dark float-start">Comments</button>
+                                <div class="heart-container container ">                         
+                                <div class="heart-like-button float-end "></div>  
+                                </div>
+                            </div>   
+                          
                           </div>
                       </div>`;
   });
