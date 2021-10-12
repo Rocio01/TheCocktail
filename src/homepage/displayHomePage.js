@@ -16,10 +16,26 @@ const display = (obj) => {
                             <h5 class="card-title">${drink.strDrink}</h5>
                             <p class="card-text">
                               <button type="button" class="btn comments btn-outline-dark col-sm-4">Comments</button>
-                             </p>
+                             </p>                            
+                             <div class="heart-like-button float-right"></div>                            
                           </div>
                       </div>`;
   });
+
+  const hearts = document.querySelectorAll(".heart-like-button");
+
+  hearts.forEach((heart)=> {
+    heart.addEventListener("click", () => {
+      if (heart.classList.contains("liked")) {
+        heart.classList.remove("liked");
+      } else {
+        heart.classList.add("liked");
+      }
+    });
+  })
+
+
+
 };
 
 export { display };
