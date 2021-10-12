@@ -1,3 +1,13 @@
 body {
-  background-color: bisque;
+  background-color: #5C7AEA !important;
+  padding: 2%;
+  
+}
+
+h1, h3 {
+  color: white !important;
+}
+
+.card {
+  background-color:  #E6E6E6 !important;
 }
