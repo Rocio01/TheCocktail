@@ -20,13 +20,15 @@ const display = (obj) => {
   });
 
   const hearts = document.querySelectorAll('.heart-like-button');
-  const cards = document.querySelectorAll('.card');
   const modal = document.querySelector('.modal-m');
   const content = document.querySelector('.m-content');
-  cards.forEach((card) => {
-    card.addEventListener('click', () => {
+  const comments = document.querySelectorAll('.comments');
+  comments.forEach((comment) => {
+    comment.addEventListener('click', () => {
       modal.classList.remove('d-none');
-      const cardNodes = card.childNodes;
+      // get the id of the card
+      const cardNodes = comment.parentNode.parentNode.parentNode.childNodes;
+      console.log(cardNodes);
       const imgSrc = cardNodes[1].getAttribute('src');
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
