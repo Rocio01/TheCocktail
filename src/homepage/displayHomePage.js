@@ -1,9 +1,9 @@
 const display = (obj) => {
-  const cardsContainer = document.querySelector('.cards-container');
+  const cardsContainer = document.querySelector(".cards-container");
   obj.drinks.forEach((drink) => {
-    const divCol = document.createElement('div');
+    const divCol = document.createElement("div");
     cardsContainer.appendChild(divCol);
-    divCol.className = 'col';
+    divCol.className = "col";
     divCol.innerHTML = `<div class="card h-100" id ="${drink.idDrink}">
                           <img src="${drink.strDrinkThumb}" class="card-img-top p-3" alt="...">
                           <div class="card-body">
@@ -19,20 +19,18 @@ const display = (obj) => {
                       </div>`;
   });
 
-  const hearts = document.querySelectorAll('.heart-like-button');
-  const cards = document.querySelectorAll('.card');
-  const modal = document.querySelector('.modal-m');
-  const content = document.querySelector('.m-content');
+  const hearts = document.querySelectorAll(".heart-like-button");
+  const cards = document.querySelectorAll(".card");
+  const modal = document.querySelector(".modal-m");
+  const content = document.querySelector(".m-content");
   cards.forEach((card) => {
-    card.addEventListener('click', () => {
-      modal.classList.remove('d-none');
+    card.addEventListener("click", () => {
+      modal.classList.remove("d-none");
       const cardNodes = card.childNodes;
-      const imgSrc = cardNodes[1].getAttribute('src');
+      const imgSrc = cardNodes[1].getAttribute("src");
       const title = cardNodes[3].childNodes[1].innerHTML;
-      const div = document.createElement('div');
+      const div = document.createElement("div");
       div.innerHTML = `<div class="card h-100">
-    
-      
       <header  class= "d-flex justify-content-end">
       <button class="btn-close"></button>
     </header>
@@ -55,45 +53,37 @@ const display = (obj) => {
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
           <div class="mb-3">
-           
               <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-      
-       
           </div>
-        
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </section>
-        </div>   
-      
+        </div>     
       </div>
   </div>`;
-    content.appendChild(div);
-    console.log(content);
-    
-    const closeBtn = document.querySelectorAll('.btn-close');
-    console.log(closeBtn);
-    closeBtn.forEach((btn) => {
-    console.log(btn.childNodes);
-      btn.addEventListener('click', () => {
-        modal.classList.add('d-none');
-        content.removeChild(content.childNodes[1]);
-        console.log('hr');
+      content.appendChild(div);
+      console.log(content);
+
+      const closeBtn = document.querySelectorAll(".btn-close");
+      console.log(closeBtn);
+      closeBtn.forEach((btn) => {
+        console.log(btn.childNodes);
+        btn.addEventListener("click", () => {
+          modal.classList.add("d-none");
+          content.removeChild(content.childNodes[1]);
+        });
       });
-    
     });
   });
-  });
   hearts.forEach((heart) => {
-    heart.addEventListener('click', () => {
-      if (heart.classList.contains('liked')) {
-        heart.classList.remove('liked');
+    heart.addEventListener("click", () => {
+      if (heart.classList.contains("liked")) {
+        heart.classList.remove("liked");
       } else {
-        heart.classList.add('liked');
+        heart.classList.add("liked");
       }
     });
   });
-
 };
 
 export { display as default };
