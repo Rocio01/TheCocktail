@@ -1,6 +1,8 @@
 import getDetails from './apidetails';
 import { postLike, getLikes } from '../likes/apiInvolvement';
 
+const sleep = (act) => new Promise((resolve) => setTimeout(resolve, act));
+
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
   obj.drinks.forEach((drink) => {
@@ -102,6 +104,7 @@ const display = (obj) => {
       if (!(heart.classList.contains('liked'))) {
         heart.classList.add('liked');
         postLike(heart);
+        sleep(2000).then(() => { document.location.reload(); });
       } else {
         heart.classList.remove('liked');
       }
@@ -110,12 +113,10 @@ const display = (obj) => {
 
   heartsContainer.forEach((heartContainer) => {
     const likesp = document.createElement('p');
-    likesp.className = 'likesp float-end';    
+    likesp.className = 'likesp float-end p-2';
     heartContainer.appendChild(likesp);
     getLikes(heartContainer);
   });
-
-  
 };
 
 export { display as default };

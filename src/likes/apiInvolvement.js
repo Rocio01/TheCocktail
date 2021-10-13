@@ -21,18 +21,16 @@ const postLike = async (heart) => {
 };
 
 const getLikes = async (heartContainer) => {
-  
   try {
     const response = await fetch(`${url}/${IdApi}/likes/`);
     const data = await response.json();
-   
-    data.forEach((obj)=>{
-       if(heartContainer.id === obj.item_id){
-          const paragraph = heartContainer.lastChild;
-          paragraph.innerHTML = `${obj.likes} likes`
-       }
-      
-    })
+
+    data.forEach((obj) => {
+      if (heartContainer.id === obj.item_id) {
+        const paragraph = heartContainer.lastChild;
+        paragraph.innerHTML = `${obj.likes} likes`;
+      }
+    });
 
     return data;
   } catch (error) {
