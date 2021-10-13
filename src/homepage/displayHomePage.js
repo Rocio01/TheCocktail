@@ -31,7 +31,9 @@ const display = (obj) => {
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
       div.innerHTML = `<div class="card h-100">
-      <header class= "d-flex justify-content-end">
+    
+      
+      <header  class= "d-flex justify-content-end">
       <button class="btn-close"></button>
     </header>
       <img src="${imgSrc}" class="card-img-top p-3" alt="...">
@@ -66,11 +68,22 @@ const display = (obj) => {
       
       </div>
   </div>`;
-      content.appendChild(div);
+    content.appendChild(div);
+    console.log(content);
+    
+    const closeBtn = document.querySelectorAll('.btn-close');
+    console.log(closeBtn);
+    closeBtn.forEach((btn) => {
+    console.log(btn.childNodes);
+      btn.addEventListener('click', () => {
+        modal.classList.add('d-none');
+        content.removeChild(content.childNodes[1]);
+        console.log('hr');
+      });
+    
     });
- 
   });
-
+  });
   hearts.forEach((heart) => {
     heart.addEventListener('click', () => {
       if (heart.classList.contains('liked')) {
@@ -82,13 +95,5 @@ const display = (obj) => {
   });
 
 };
-const btnClose = document.querySelectorAll('.btn-close');
-btnClose.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    console.log('cliked');
-    // modal.classList.add('d-none');
-    // content.innerHTML = '';
-  });
-});
 
 export { display as default };
