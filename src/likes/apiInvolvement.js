@@ -20,14 +20,20 @@ const postLike = async (heart) => {
   }
 };
 
-const getLikes = async () => {
+const getLikes = async (heartContainer) => {
+  
   try {
     const response = await fetch(`${url}/${IdApi}/likes/`);
     const data = await response.json();
-    console.log(data[0].item_id)
-    const arr = Object.entries(data)
-    const likesInformation = arr.filter(x => x.item_id === "item-12916")
-    console.log(likesInformation)
+   
+    data.forEach((obj)=>{
+       if(heartContainer.id === obj.item_id){
+          const paragraph = heartContainer.lastChild;
+          paragraph.innerHTML = `${obj.likes} likes`
+       }
+      
+    })
+
     return data;
   } catch (error) {
     throw new Error(error.message);
