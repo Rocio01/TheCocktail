@@ -6,7 +6,6 @@ const getCocktailsObject = async () => {
     const response = await fetch(url);
     const data = await response.json();
     display(data);
-    console.log(data);
   } catch (error) {
     throw new Error(error.message);
   }
