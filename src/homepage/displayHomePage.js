@@ -82,11 +82,8 @@ const display = (obj) => {
              </div>     
            </div>
        </div>`;
-console.log(data);
         const closeBtn = document.querySelectorAll('.btn-close');
-        console.log(closeBtn);
         closeBtn.forEach((btn) => {
-          console.log(btn.childNodes);
           btn.addEventListener('click', () => {
             modal.classList.add('d-none');
             content.removeChild(content.childNodes[1]);
@@ -94,7 +91,6 @@ console.log(data);
         });
       });
       content.appendChild(div);
-      console.log(content);
     });
   });
   hearts.forEach((heart) => {
