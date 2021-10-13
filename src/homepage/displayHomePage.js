@@ -24,9 +24,10 @@ const display = (obj) => {
 
   hearts.forEach((heart) => {
     heart.addEventListener('click', () => {
+      postLike(heart)
       if (!(heart.classList.contains('liked'))){
           heart.classList.add('liked');
-          postLike(heart)
+         
       }
 
       // if (heart.classList.contains('liked')) {
