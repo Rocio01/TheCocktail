@@ -1,4 +1,5 @@
-import { postLike, getLikes } from "../likes/apiInvolvement";
+import { postLike, getLikes } from '../likes/apiInvolvement';
+
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
   obj.drinks.forEach((drink) => {
@@ -11,7 +12,7 @@ const display = (obj) => {
                             <h5 class="card-title">${drink.strDrink}</h5>
                             <div class="card-text container">
                               <button type="button" class="btn comments btn-outline-dark float-start">Comments</button>
-                                <div class="heart-container container "id="item-${drink.idDrink}">                         
+                                <div class="heart-container container" id="item-${drink.idDrink}">                         
                                 <div class="heart-like-button float-end" ></div>  
                                 </div>
                             </div>   
@@ -21,24 +22,29 @@ const display = (obj) => {
   });
 
   const hearts = document.querySelectorAll('.heart-like-button');
+  const heartsContainer = document.querySelectorAll(".heart-container");
 
   hearts.forEach((heart) => {
     heart.addEventListener('click', () => {
-      postLike(heart)
-      if (!(heart.classList.contains('liked'))){
-          heart.classList.add('liked');
-         
+      if (!(heart.classList.contains('liked'))) {
+        heart.classList.add('liked');
+        postLike(heart);
+      } else {
+        heart.classList.remove('liked');
       }
-
-      // if (heart.classList.contains('liked')) {
-      //   console.log(heart.parentElement.id)
-      //    heart.classList.remove('liked');
-       
-      // } else {
-      //   heart.classList.add('liked');
-      // }
     });
+
   });
+
+  heartsContainer.forEach((heartContainer)=>{
+    const likesDiv = document.createElement("div");
+    likesDiv.className = "likesDiv float-end";
+   console.log(heartContainer.id)
+
+  })
+  
+  getLikes()
+ 
 };
 
 export { display as default };
