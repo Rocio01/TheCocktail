@@ -1,3 +1,4 @@
+import { postLike, getLikes } from "../likes/apiInvolvement";
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
   obj.drinks.forEach((drink) => {
@@ -10,8 +11,8 @@ const display = (obj) => {
                             <h5 class="card-title">${drink.strDrink}</h5>
                             <div class="card-text container">
                               <button type="button" class="btn comments btn-outline-dark float-start">Comments</button>
-                                <div class="heart-container container ">                         
-                                <div class="heart-like-button float-end "></div>  
+                                <div class="heart-container container "id="item-${drink.idDrink}">                         
+                                <div class="heart-like-button float-end" ></div>  
                                 </div>
                             </div>   
                           
@@ -23,11 +24,18 @@ const display = (obj) => {
 
   hearts.forEach((heart) => {
     heart.addEventListener('click', () => {
-      if (heart.classList.contains('liked')) {
-        heart.classList.remove('liked');
-      } else {
-        heart.classList.add('liked');
+      if (!(heart.classList.contains('liked'))){
+          heart.classList.add('liked');
+          postLike(heart)
       }
+
+      // if (heart.classList.contains('liked')) {
+      //   console.log(heart.parentElement.id)
+      //    heart.classList.remove('liked');
+       
+      // } else {
+      //   heart.classList.add('liked');
+      // }
     });
   });
 };
