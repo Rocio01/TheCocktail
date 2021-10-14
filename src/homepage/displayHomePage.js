@@ -42,21 +42,30 @@ const display = (obj) => {
       const div = document.createElement('div');
       const ul = document.createElement('ul');
       Comments.getComments(parentNodesid).then((data) => {
-        data.forEach((com) => {
-          const li = document.createElement('li');
-          const span = document.createElement('span');
-          const span2 = document.createElement('span');
-          const p = document.createElement('p');
-          span.innerHTML = `${com.username}: `;
-          span2.innerHTML = `${com.creation_date}`;
-          p.innerHTML = com.comment;
-          li.appendChild(span2);
-          li.appendChild(span);
-          li.appendChild(p);
-          ul.appendChild(li);
-          li.classList.add('d-flex');
-          ul.classList.add('list-unstyled', 'col-12');
-        });
+        if (data.length === 0) {
+          ul.innerHTML = 'No Comments Yet';
+        } else {
+          data.forEach((com) => {
+            if (com.username === undefined || com.comment === undefined) {
+              ul.innerHTML = 'No Comments Yet';
+              ul.classList.add('text-center');
+            } else {
+              const li = document.createElement('li');
+              const span = document.createElement('span');
+              const span2 = document.createElement('span');
+              const p = document.createElement('p');
+              span.innerHTML = `${com.username}: `;
+              span2.innerHTML = `${com.creation_date}`;
+              p.innerHTML = com.comment;
+              li.appendChild(span2);
+              li.appendChild(span);
+              li.appendChild(p);
+              ul.appendChild(li);
+              li.classList.add('d-flex');
+              ul.classList.add('list-unstyled', 'col-12');
+            }
+          });
+        }
       });
       detailData.then((data) => {
         div.innerHTML = `<div class="card h-100">
