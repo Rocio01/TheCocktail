@@ -1,4 +1,4 @@
-const IdApi = 'JMAkYzgRnPHzWIhct0jg';
+const IdApi = 'Ta2GFwt8Cod1hXHUQeuH';
 const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps';
 
 const postComment = async (comment) => {
@@ -18,4 +18,10 @@ const postComment = async (comment) => {
   }
 };
 
-export default postComment;
+const getComment = async (id) => {
+  const response = await fetch(`${url}/${IdApi}/comments?item_id=${id}`);
+  const message = await (response.json());
+  return message;
+};
+
+export { getComment, postComment };

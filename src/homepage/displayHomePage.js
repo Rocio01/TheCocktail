@@ -1,5 +1,5 @@
 import getDetails from './apidetails';
-import postComment from '../comments/involvementApi';
+import { postComment, getComment } from '../comments/involvementApi';
 
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
@@ -83,6 +83,9 @@ const display = (obj) => {
              </div>     
            </div>
        </div>`;
+        getComment(parentNodesid).then((val) => {
+          console.log(val);
+        });
         const closeBtn = document.querySelectorAll('.btn-close');
         closeBtn.forEach((btn) => {
           btn.addEventListener('click', () => {
