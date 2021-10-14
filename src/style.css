@@ -75,3 +75,15 @@ h3 {
 .nav-white {
   color: white;
 }
+
+a {
+  text-decoration: none;
+  color: #e6e9f5;
+}
+
+footer {
+  padding: 2%;
+  margin-top: 5%;
+  color: white;
+  border-top: 2px solid #e6e9f5;
+}
