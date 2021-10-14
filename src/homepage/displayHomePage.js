@@ -94,54 +94,52 @@ const display = (obj) => {
       });
       detailData.then((data) => {
         div.innerHTML = `<div class="card h-100">
-           <header  class= 'd-flex justify-content-end'>
-           <button class='btn-close'></button>
-         </header>
-           <img src='${imgSrc}' class='card-img-top p-3' alt='...'>
-           <div class='card-body'>
-             <h5 class='card-title text-center'>
-             ${title}
-             </h5>
-             <section class='ingredients'>
-              <h5 class = 'text-center'>Ingredients</h5>
-              <ul class = 'list-unstyled d-flex justify-content-around'>
-  <li>${data.strIngredient1}</li>
-  <li>${data.strIngredient2}</li>
-  <li>${data.strIngredient3}</li>
-  <li>${data.strIngredient4}</li>
-  <li>${data.strIngredient5}</li>
-  <li>${data.strIngredient6}</li>
-</ul>
-   </section>
-  
-             <section class='comments d-flex flex-column align-items-center'>
-           <div class = 'comment-list col-8'>
-    
-           </div>
-          
-             <section class='add-comment'>
-             <h3>Add a comment</h3>
-             <form>
-               <div class='mb-3'>
-                 <input type='text' class='form-control' id='name'>
-               </div>
-               <div class='mb-3'>
-                   <textarea class='form-control' placeholder='Leave a comment here' id='floatingTextarea'></textarea>
-               </div>
-               <button type='submit' class='btn submit btn-primary'>Submit</button>
-             </form>
-           </section>
-             </div>     
-           </div>
-       </div>`;
+                        <header  class= 'd-flex justify-content-end'>
+                           <button class='btn-close'></button>
+                        </header>
+                        <img src='${imgSrc}' class='card-img-top p-3' alt='...'>
+                        <div class='card-body'>
+                          <h5 class='card-title text-center'>
+                          ${title}
+                          </h5>
+                          <section class='ingredients'>
+                            <h5 class = 'text-center'>Ingredients</h5>
+                                <ul class = 'list-unstyled d-flex justify-content-around'>
+                                    <li>${data.strIngredient1}</li>
+                                    <li>${data.strIngredient2}</li>
+                                    <li>${data.strIngredient3}</li>
+                                    <li>${data.strIngredient4}</li>
+                                    <li>${data.strIngredient5}</li>
+                                    <li>${data.strIngredient6}</li>
+                                </ul>
+                          </section>
+                
+                          <section class='comments d-flex flex-column align-items-center'>
+                        <div class = 'comment-list col-8'>
+                  
+                        </div>
+                        
+                          <section class='add-comment'>
+                          <h3>Add a comment</h3>
+                          <form>
+                            <div class='mb-3'>
+                              <input type='text' class='form-control' id='name'>
+                            </div>
+                            <div class='mb-3'>
+                                <textarea class='form-control' placeholder='Leave a comment here' id='floatingTextarea'></textarea>
+                            </div>
+                            <button type='submit' class='btn submit btn-primary'>Submit</button>
+                          </form>
+                        </section>
+                          </div>     
+                        </div>
+                    </div>`;
         callComent();
         const commentsSection = document.querySelectorAll('.comment-list');
         commentsSection.forEach((comment) => {
           comment.appendChild(div2);
         });
-        // commentpreview.forEach((com) => {
-        //   com.innerHTML = div2.innerHTML;
-        // });
+
         const closeBtn = document.querySelectorAll('.btn-close');
         closeBtn.forEach((btn) => {
           btn.addEventListener('click', () => {
