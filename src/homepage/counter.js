@@ -1,8 +1,8 @@
 const counter = () => {
-  const drinks = document.querySelectorAll(".card-drink");
+  const drinks = document.querySelectorAll('.card-drink');
   const result = drinks.length;
 
-return result;
-}
+  return result;
+};
 
-export {counter as default}
+export { counter as default };

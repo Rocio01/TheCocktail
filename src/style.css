@@ -63,10 +63,10 @@ h3 {
   animation: liked 0.4s ease;
 }
 
- .nav {
+.nav {
   background-color: #96abf8;
   padding: 10px;
-} 
+}
 
 .title {
   color: #091353;
@@ -75,4 +75,3 @@ h3 {
 .nav-white {
   color: white;
 }
-
