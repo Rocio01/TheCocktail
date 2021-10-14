@@ -146,7 +146,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Comments)\n/* harmony export */ });\n/* harmony import */ var _involvementApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./involvementApi */ \"./src/comments/involvementApi.js\");\n\r\n\r\nclass Comments {\r\n static comments = [];\r\n\r\n static getComments(id) {\r\n   return (0,_involvementApi__WEBPACK_IMPORTED_MODULE_0__.getComment)(id).then((usercomments) => usercomments);\r\n }\r\n}\r\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/comments/comments.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Comments)\n/* harmony export */ });\n/* harmony import */ var _involvementApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./involvementApi */ \"./src/comments/involvementApi.js\");\n\n\nclass Comments {\n static comments = [];\n\n static getComments(id) {\n   return (0,_involvementApi__WEBPACK_IMPORTED_MODULE_0__.getComment)(id).then((usercomments) => usercomments);\n }\n}\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/comments/comments.js?");
 
 /***/ }),
 
@@ -186,7 +186,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ counter)\n/* harmony export */ });\nconst counter = () => {\n  const drinks = document.querySelectorAll('.card-drink');\n  const result = drinks.length;\n\n  return result;\n};\n\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/homepage/counter.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ counter)\n/* harmony export */ });\nconst counter = () => {\r\n  const drinks = document.querySelectorAll('.card-drink');\r\n  const result = drinks.length;\r\n\r\n  return result;\r\n};\r\n\r\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/homepage/counter.js?");
 
 /***/ }),
 
