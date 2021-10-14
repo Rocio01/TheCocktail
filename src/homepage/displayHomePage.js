@@ -1,5 +1,6 @@
 import getDetails from './apidetails';
 import { postLike, getLikes } from '../likes/apiInvolvement';
+import counter from './counter';
 
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
@@ -7,7 +8,7 @@ const display = (obj) => {
     const divCol = document.createElement('div');
     cardsContainer.appendChild(divCol);
     divCol.className = 'col';
-    divCol.innerHTML = `<div class='card h-100' id ='${drink.idDrink}'>
+    divCol.innerHTML = `<div class='card card-drink h-100' id ='${drink.idDrink}'>
                           <img src='${drink.strDrinkThumb}' class='card-img-top p-3' alt='...'>
                           <div class='card-body'>
                             <h5 class='card-title'>${drink.strDrink}</h5>
@@ -116,6 +117,10 @@ const display = (obj) => {
     heartContainer.appendChild(likesp);
     getLikes(heartContainer);
   });
+
+  const drinksCount = document.querySelector(".drinks-number");
+  drinksCount.innerHTML = `Drinks (${counter()})`;
+ 
 };
 
 export { display as default };
