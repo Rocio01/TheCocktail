@@ -1,8 +1,6 @@
 import getDetails from './apidetails';
 import { postLike, getLikes } from '../likes/apiInvolvement';
 
-const sleep = (act) => new Promise((resolve) => setTimeout(resolve, act));
-
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
   obj.drinks.forEach((drink) => {
@@ -101,12 +99,13 @@ const display = (obj) => {
 
   hearts.forEach((heart) => {
     heart.addEventListener('click', () => {
+      const like = heart.parentElement.lastChild;
+      const number = parseInt(like.innerHTML.split(' ')[0], 10);
+
       if (!(heart.classList.contains('liked'))) {
         heart.classList.add('liked');
         postLike(heart);
-        sleep(2000).then(() => { document.location.reload(); });
-      } else {
-        heart.classList.remove('liked');
+        like.innerHTML = `${number + 1} likes`;
       }
     });
   });
