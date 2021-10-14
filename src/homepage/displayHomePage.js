@@ -2,6 +2,7 @@ import getDetails from './apidetails';
 import { postLike, getLikes } from '../likes/apiInvolvement';
 import counter from './counter';
 import Comments from '../comments/comments';
+import { postComment } from '../comments/involvementApi';
 
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
@@ -42,6 +43,24 @@ const display = (obj) => {
       const div = document.createElement('div');
       const div2 = document.createElement('div');
       const ul = document.createElement('ul');
+      const addCommnt = (username, comment) => {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        const span2 = document.createElement('span');
+        const p = document.createElement('p');
+        const date = new Date().toLocaleDateString();
+        span.innerHTML = `${username}: `;
+        span2.innerHTML = ` ${date}`;
+        span2.classList.add('px-3');
+        p.innerHTML = comment;
+        li.appendChild(span2);
+        li.appendChild(span);
+        li.appendChild(p);
+        ul.appendChild(li);
+        li.classList.add('d-flex');
+        ul.classList.add('list-unstyled', 'col-12');
+        div2.appendChild(ul);
+      };
       const callComent = () => Comments.getComments(parentNodesid).then((data) => {
         const h3 = document.createElement('h3');
         h3.innerHTML = `Comments(${data.length})`;
@@ -58,7 +77,8 @@ const display = (obj) => {
               const span2 = document.createElement('span');
               const p = document.createElement('p');
               span.innerHTML = `${com.username}: `;
-              span2.innerHTML = `${com.creation_date}`;
+              span2.innerHTML = ` ${new Date().toLocaleDateString()}`;
+              span2.classList.add('px-3');
               p.innerHTML = com.comment;
               li.appendChild(span2);
               li.appendChild(span);
@@ -96,8 +116,7 @@ const display = (obj) => {
   
              <section class='comments d-flex flex-column align-items-center'>
            <div class = 'comment-list col-8'>
-         <li class = 'comment-preview'> 
-         </li>
+    
            </div>
           
              <section class='add-comment'>
@@ -117,7 +136,6 @@ const display = (obj) => {
        </div>`;
         callComent();
         const commentsSection = document.querySelectorAll('.comment-list');
-        const commentpreview = document.querySelectorAll('.comment-preview');
         commentsSection.forEach((comment) => {
           comment.appendChild(div2);
         });
@@ -135,24 +153,18 @@ const display = (obj) => {
         submitBtn.forEach((btn) => {
           btn.addEventListener('click', (e) => {
             e.preventDefault();
-            let name = document.querySelector('#name').value;
-            let comments = document.querySelector('#floatingTextarea').value;
+            const name = document.querySelector('#name').value;
+            const comments = document.querySelector('#floatingTextarea').value;
             const data = {
               item_id: parentNodesid,
               username: name,
               comment: comments,
 
             };
-            name = '';
-            comments = '';
             postComment(data);
-            callComent();
-            // remove duplicates from ul
-            while (ul.hasChildNodes()) {
-              ul.removeChild(ul.firstChild);
-            }
-
-            console.log(ul);
+            addCommnt(data.username, data.comment);
+            data.username = '';
+            data.comment = '';
 
             // call comments with no repetitions
           });
@@ -185,9 +197,8 @@ const display = (obj) => {
     getLikes(heartContainer);
   });
 
-  const drinksCount = document.querySelector(".drinks-number");
+  const drinksCount = document.querySelector('.drinks-number');
   drinksCount.innerHTML = `Drinks (${counter()})`;
- 
 };
 
 export { display as default };
