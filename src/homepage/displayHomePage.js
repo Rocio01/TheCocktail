@@ -3,6 +3,7 @@ import { postLike, getLikes } from '../likes/apiInvolvement';
 import counter from './counter';
 import Comments from '../comments/comments';
 import { postComment } from '../comments/involvementApi';
+import Counter from '../comments/commentCounter';
 
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
@@ -31,12 +32,12 @@ const display = (obj) => {
   comments.forEach((comment) => {
     comment.addEventListener('click', () => {
       modal.classList.remove('d-none');
-      // get the id of the card
       const cardNodes = comment.parentNode.parentNode.parentNode.childNodes;
       // get id of the card
+     
       const parentNodesid = comment.parentElement.parentElement.parentElement.id;
+      console.log(Counter(parentNodesid));
       const details = getDetails(parentNodesid);
-      // let detailData = [];
       const detailData = details.then((data) => data.drinks[0]);
       const imgSrc = cardNodes[1].getAttribute('src');
       const title = cardNodes[3].childNodes[1].innerHTML;
@@ -161,10 +162,8 @@ const display = (obj) => {
             };
             postComment(data);
             addCommnt(data.username, data.comment);
-            data.username = '';
-            data.comment = '';
-
             // call comments with no repetitions
+            console.log(Counter(parentNodesid));
           });
         });
       });
