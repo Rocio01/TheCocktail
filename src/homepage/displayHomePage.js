@@ -40,15 +40,18 @@ const display = (obj) => {
       const imgSrc = cardNodes[1].getAttribute('src');
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
+      const div2 = document.createElement('div');
       const ul = document.createElement('ul');
-      Comments.getComments(parentNodesid).then((data) => {
+      const callComent = () => Comments.getComments(parentNodesid).then((data) => {
+        const h3 = document.createElement('h3');
+        h3.innerHTML = `Comments(${data.length})`;
         if (data.length === 0) {
-          ul.innerHTML = 'No Comments Yet';
+          div2.innerHTML = 'No Comments Yet';
         } else {
           data.forEach((com) => {
             if (com.username === undefined || com.comment === undefined) {
-              ul.innerHTML = 'No Comments Yet';
-              ul.classList.add('text-center');
+              div2.innerHTML = 'No Comments Yet';
+              div2.classList.add('text-center');
             } else {
               const li = document.createElement('li');
               const span = document.createElement('span');
@@ -63,6 +66,8 @@ const display = (obj) => {
               ul.appendChild(li);
               li.classList.add('d-flex');
               ul.classList.add('list-unstyled', 'col-12');
+              div2.appendChild(h3);
+              div2.appendChild(ul);
             }
           });
         }
@@ -91,7 +96,8 @@ const display = (obj) => {
   
              <section class='comments d-flex flex-column align-items-center'>
            <div class = 'comment-list col-8'>
-        
+         <li class = 'comment-preview'> 
+         </li>
            </div>
           
              <section class='add-comment'>
@@ -109,10 +115,15 @@ const display = (obj) => {
              </div>     
            </div>
        </div>`;
+        callComent();
         const commentsSection = document.querySelectorAll('.comment-list');
+        const commentpreview = document.querySelectorAll('.comment-preview');
         commentsSection.forEach((comment) => {
-          comment.appendChild(ul);
+          comment.appendChild(div2);
         });
+        // commentpreview.forEach((com) => {
+        //   com.innerHTML = div2.innerHTML;
+        // });
         const closeBtn = document.querySelectorAll('.btn-close');
         closeBtn.forEach((btn) => {
           btn.addEventListener('click', () => {
@@ -124,16 +135,26 @@ const display = (obj) => {
         submitBtn.forEach((btn) => {
           btn.addEventListener('click', (e) => {
             e.preventDefault();
-            const name = document.querySelector('#name').value;
-            const comments = document.querySelector('#floatingTextarea').value;
+            let name = document.querySelector('#name').value;
+            let comments = document.querySelector('#floatingTextarea').value;
             const data = {
               item_id: parentNodesid,
               username: name,
               comment: comments,
 
             };
-            console.log(postComment(data));
-            // content.removeChild(content.childNodes[1]);
+            name = '';
+            comments = '';
+            postComment(data);
+            callComent();
+            // remove duplicates from ul
+            while (ul.hasChildNodes()) {
+              ul.removeChild(ul.firstChild);
+            }
+
+            console.log(ul);
+
+            // call comments with no repetitions
           });
         });
       });
