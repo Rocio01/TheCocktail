@@ -25,7 +25,13 @@ const getComment = async (id) => {
     if (message.status === 'Error') {
       throw new Error(message.message);
     }
-    return message;
+    const propertyValues = Object.values(message);
+
+    // propertyValues.forEach((element) => {
+    //   console.log(element.comment);
+    // });
+    console.log(propertyValues);
+    return propertyValues;
   } catch (error) {
     return error;
   }

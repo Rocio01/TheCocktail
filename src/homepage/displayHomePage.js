@@ -40,8 +40,24 @@ const display = (obj) => {
       const imgSrc = cardNodes[1].getAttribute('src');
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
-      Comments.getComments(parentNodesid);
-      console.log(Comments.comments);
+      const ul = document.createElement('ul');
+      Comments.getComments(parentNodesid).then((data) => {
+        data.forEach((com) => {
+          const li = document.createElement('li');
+          const span = document.createElement('span');
+          const span2 = document.createElement('span');
+          const p = document.createElement('p');
+          span.innerHTML = `${com.username}: `;
+          span2.innerHTML = `${com.creation_date}`;
+          p.innerHTML = com.comment;
+          li.appendChild(span2);
+          li.appendChild(span);
+          li.appendChild(p);
+          ul.appendChild(li);
+          li.classList.add('d-flex');
+          ul.classList.add('list-unstyled', 'col-12');
+        });
+      });
       detailData.then((data) => {
         div.innerHTML = `<div class="card h-100">
            <header  class= 'd-flex justify-content-end'>
@@ -65,12 +81,10 @@ const display = (obj) => {
    </section>
   
              <section class='comments d-flex flex-column align-items-center'>
-             <h4>
-               Comments(2)
-             </h4>
-             <span>${Comments.comments}</span>
-             <span>03/11/2021 Mia: I would love to buy it</span>
-             </section>
+           <div class = 'comment-list col-8'>
+        
+           </div>
+          
              <section class='add-comment'>
              <h3>Add a comment</h3>
              <form>
@@ -86,6 +100,10 @@ const display = (obj) => {
              </div>     
            </div>
        </div>`;
+        const commentsSection = document.querySelectorAll('.comment-list');
+        commentsSection.forEach((comment) => {
+          comment.appendChild(ul);
+        });
         const closeBtn = document.querySelectorAll('.btn-close');
         closeBtn.forEach((btn) => {
           btn.addEventListener('click', () => {
