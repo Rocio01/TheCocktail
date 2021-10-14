@@ -1,4 +1,3 @@
-import Comments from './comments';
+const Counter = (commentsList) => commentsList.length;
 
-const Counter = (id) => Comments.getComments(id);
 export default Counter;

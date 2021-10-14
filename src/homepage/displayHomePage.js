@@ -34,9 +34,8 @@ const display = (obj) => {
       modal.classList.remove('d-none');
       const cardNodes = comment.parentNode.parentNode.parentNode.childNodes;
       // get id of the card
-     
+
       const parentNodesid = comment.parentElement.parentElement.parentElement.id;
-      console.log(Counter(parentNodesid));
       const details = getDetails(parentNodesid);
       const detailData = details.then((data) => data.drinks[0]);
       const imgSrc = cardNodes[1].getAttribute('src');
@@ -44,6 +43,7 @@ const display = (obj) => {
       const div = document.createElement('div');
       const div2 = document.createElement('div');
       const ul = document.createElement('ul');
+      ul.classList.add('unique');
       const addCommnt = (username, comment) => {
         const li = document.createElement('li');
         const span = document.createElement('span');
@@ -64,7 +64,8 @@ const display = (obj) => {
       };
       const callComent = () => Comments.getComments(parentNodesid).then((data) => {
         const h3 = document.createElement('h3');
-        h3.innerHTML = `Comments(${data.length})`;
+
+        h3.innerHTML = `Comments(${Counter(data)})`;
         if (data.length === 0) {
           div2.innerHTML = 'No Comments Yet';
         } else {
@@ -87,6 +88,7 @@ const display = (obj) => {
               ul.appendChild(li);
               li.classList.add('d-flex');
               ul.classList.add('list-unstyled', 'col-12');
+              // ul.setAttribute('id', 'uniqueid');
               div2.appendChild(h3);
               div2.appendChild(ul);
             }
@@ -116,7 +118,7 @@ const display = (obj) => {
                           </section>
                 
                           <section class='comments d-flex flex-column align-items-center'>
-                        <div class = 'comment-list col-8'>
+                        <div class = 'comment-list col-8' id = 'uniqueid'>
                   
                         </div>
                         
@@ -163,7 +165,7 @@ const display = (obj) => {
             postComment(data);
             addCommnt(data.username, data.comment);
             // call comments with no repetitions
-            console.log(Counter(parentNodesid));
+            console.log(Counter());
           });
         });
       });
