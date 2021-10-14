@@ -83,9 +83,15 @@ const display = (obj) => {
              </div>     
            </div>
        </div>`;
+        const comments = [];
         getComment(parentNodesid).then((val) => {
-          console.log(val);
+          comments.push(val);
         });
+        if (comments.length === 0) {
+          console.log('No comment');
+        } else {
+          console.log(comments);
+        }
         const closeBtn = document.querySelectorAll('.btn-close');
         closeBtn.forEach((btn) => {
           btn.addEventListener('click', () => {
