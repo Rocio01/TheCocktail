@@ -1,6 +1,7 @@
 import getDetails from './apidetails';
 import { postLike, getLikes } from '../likes/apiInvolvement';
 import counter from './counter';
+import Comments from '../comments/comments';
 
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
@@ -39,55 +40,121 @@ const display = (obj) => {
       const imgSrc = cardNodes[1].getAttribute('src');
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
+      const div2 = document.createElement('div');
+      const ul = document.createElement('ul');
+      const callComent = () => Comments.getComments(parentNodesid).then((data) => {
+        const h3 = document.createElement('h3');
+        h3.innerHTML = `Comments(${data.length})`;
+        if (data.length === 0) {
+          div2.innerHTML = 'No Comments Yet';
+        } else {
+          data.forEach((com) => {
+            if (com.username === undefined || com.comment === undefined) {
+              div2.innerHTML = 'No Comments Yet';
+              div2.classList.add('text-center');
+            } else {
+              const li = document.createElement('li');
+              const span = document.createElement('span');
+              const span2 = document.createElement('span');
+              const p = document.createElement('p');
+              span.innerHTML = `${com.username}: `;
+              span2.innerHTML = `${com.creation_date}`;
+              p.innerHTML = com.comment;
+              li.appendChild(span2);
+              li.appendChild(span);
+              li.appendChild(p);
+              ul.appendChild(li);
+              li.classList.add('d-flex');
+              ul.classList.add('list-unstyled', 'col-12');
+              div2.appendChild(h3);
+              div2.appendChild(ul);
+            }
+          });
+        }
+      });
       detailData.then((data) => {
         div.innerHTML = `<div class="card h-100">
-                            <header  class= 'd-flex justify-content-end'>
-                            <button class='btn-close'></button>
-                          </header>
-                            <img src='${imgSrc}' class='card-img-top p-3' alt='...'>
-                            <div class='card-body'>
-                              <h5 class='card-title text-center'>
-                              ${title}
-                              </h5>
-                              <section class='ingredients'>
-                                  <h5 class = 'text-center'>Ingredients</h5>
-                                  <ul class = 'list-unstyled d-flex justify-content-around'>
-                                      <li>${data.strIngredient1}</li>
-                                      <li>${data.strIngredient2}</li>
-                                      <li>${data.strIngredient3}</li>
-                                      <li>${data.strIngredient4}</li>
-                                      <li>${data.strIngredient5}</li>
-                                      <li>${data.strIngredient6}</li>
-                                  </ul>
-                                </section>
-                    
-                              <section class='comments d-flex flex-column align-items-center'>
-                                  <h4>
-                                    Comments(2)
-                                  </h4>
-                                  <span>03/11/2021 Alex: I would love to buy it</span>
-                                  <span>03/11/2021 Mia: I would love to buy it</span>
-                              </section>
-                              <section class='add-comment'>
-                                  <h3>Add a comment</h3>
-                                  <form>
-                                    <div class='mb-3'>
-                                      <input type='text' class='form-control'>
-                                    </div>
-                                    <div class='mb-3'>
-                                        <textarea class='form-control' placeholder='Leave a comment here' id='floatingTextarea'></textarea>
-                                    </div>
-                                    <button type='submit' class='btn btn-primary'>Submit</button>
-                                  </form>
-                            </section>
-                              </div>     
-                            </div>
-                        </div>`;
+           <header  class= 'd-flex justify-content-end'>
+           <button class='btn-close'></button>
+         </header>
+           <img src='${imgSrc}' class='card-img-top p-3' alt='...'>
+           <div class='card-body'>
+             <h5 class='card-title text-center'>
+             ${title}
+             </h5>
+             <section class='ingredients'>
+              <h5 class = 'text-center'>Ingredients</h5>
+              <ul class = 'list-unstyled d-flex justify-content-around'>
+  <li>${data.strIngredient1}</li>
+  <li>${data.strIngredient2}</li>
+  <li>${data.strIngredient3}</li>
+  <li>${data.strIngredient4}</li>
+  <li>${data.strIngredient5}</li>
+  <li>${data.strIngredient6}</li>
+</ul>
+   </section>
+  
+             <section class='comments d-flex flex-column align-items-center'>
+           <div class = 'comment-list col-8'>
+         <li class = 'comment-preview'> 
+         </li>
+           </div>
+          
+             <section class='add-comment'>
+             <h3>Add a comment</h3>
+             <form>
+               <div class='mb-3'>
+                 <input type='text' class='form-control' id='name'>
+               </div>
+               <div class='mb-3'>
+                   <textarea class='form-control' placeholder='Leave a comment here' id='floatingTextarea'></textarea>
+               </div>
+               <button type='submit' class='btn submit btn-primary'>Submit</button>
+             </form>
+           </section>
+             </div>     
+           </div>
+       </div>`;
+        callComent();
+        const commentsSection = document.querySelectorAll('.comment-list');
+        const commentpreview = document.querySelectorAll('.comment-preview');
+        commentsSection.forEach((comment) => {
+          comment.appendChild(div2);
+        });
+        // commentpreview.forEach((com) => {
+        //   com.innerHTML = div2.innerHTML;
+        // });
         const closeBtn = document.querySelectorAll('.btn-close');
         closeBtn.forEach((btn) => {
           btn.addEventListener('click', () => {
             modal.classList.add('d-none');
             content.removeChild(content.childNodes[1]);
+          });
+        });
+        const submitBtn = document.querySelectorAll('.submit');
+        submitBtn.forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let name = document.querySelector('#name').value;
+            let comments = document.querySelector('#floatingTextarea').value;
+            const data = {
+              item_id: parentNodesid,
+              username: name,
+              comment: comments,
+
+            };
+            name = '';
+            comments = '';
+            postComment(data);
+            callComent();
+            // remove duplicates from ul
+            while (ul.hasChildNodes()) {
+              ul.removeChild(ul.firstChild);
+            }
+
+            console.log(ul);
+
+            // call comments with no repetitions
           });
         });
       });
