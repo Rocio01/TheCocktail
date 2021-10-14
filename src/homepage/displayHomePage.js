@@ -1,5 +1,6 @@
 import getDetails from './apidetails';
-import { postComment, getComment } from '../comments/involvementApi';
+import { postComment } from '../comments/involvementApi';
+import Comments from '../comments/comments';
 
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
@@ -39,6 +40,8 @@ const display = (obj) => {
       const imgSrc = cardNodes[1].getAttribute('src');
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
+      Comments.getComments(parentNodesid);
+      console.log(Comments.comments);
       detailData.then((data) => {
         div.innerHTML = `<div class="card h-100">
            <header  class= 'd-flex justify-content-end'>
@@ -65,7 +68,7 @@ const display = (obj) => {
              <h4>
                Comments(2)
              </h4>
-             <span>03/11/2021 Alex: I would love to buy it</span>
+             <span>${Comments.comments}</span>
              <span>03/11/2021 Mia: I would love to buy it</span>
              </section>
              <section class='add-comment'>
@@ -83,15 +86,6 @@ const display = (obj) => {
              </div>     
            </div>
        </div>`;
-        const comments = [];
-        getComment(parentNodesid).then((val) => {
-          comments.push(val);
-        });
-        if (comments.length === 0) {
-          console.log('No comment');
-        } else {
-          console.log(comments);
-        }
         const closeBtn = document.querySelectorAll('.btn-close');
         closeBtn.forEach((btn) => {
           btn.addEventListener('click', () => {
