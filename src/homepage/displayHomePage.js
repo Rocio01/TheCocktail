@@ -1,4 +1,5 @@
 import getDetails from './apidetails';
+import postComment from '../comments/involvementApi';
 
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
@@ -71,12 +72,12 @@ const display = (obj) => {
              <h3>Add a comment</h3>
              <form>
                <div class='mb-3'>
-                 <input type='text' class='form-control'>
+                 <input type='text' class='form-control' id='name'>
                </div>
                <div class='mb-3'>
                    <textarea class='form-control' placeholder='Leave a comment here' id='floatingTextarea'></textarea>
                </div>
-               <button type='submit' class='btn btn-primary'>Submit</button>
+               <button type='submit' class='btn submit btn-primary'>Submit</button>
              </form>
            </section>
              </div>     
@@ -87,6 +88,22 @@ const display = (obj) => {
           btn.addEventListener('click', () => {
             modal.classList.add('d-none');
             content.removeChild(content.childNodes[1]);
+          });
+        });
+        const submitBtn = document.querySelectorAll('.submit');
+        submitBtn.forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const name = document.querySelector('#name').value;
+            const comments = document.querySelector('#floatingTextarea').value;
+            const data = {
+              item_id: parentNodesid,
+              username: name,
+              comment: comments,
+
+            };
+            console.log(postComment(data));
+            // content.removeChild(content.childNodes[1]);
           });
         });
       });
