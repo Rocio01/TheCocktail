@@ -43,6 +43,12 @@ h3 {
   width: 30px;
 }
 
+.heart-like-button::before,
+.heart-like-button::after,
+.heart-like-button:hover {
+    cursor: pointer;
+}
+
 .heart-like-button::before {
   top: -15px;
   left: 0;
