@@ -20,12 +20,6 @@
 
 [Live Demo Link](https://rocio01.github.io/TheCocktail/)
   
-## Video Demo
-
-[Video Demo Link](https://www.loom.com/share/c5354e90bb0041fe85dbcbfd403f2618)
-
-
-
 
 ## Getting Started
 
