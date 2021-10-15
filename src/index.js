@@ -1,2 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-alert("hello world");
+import loadHomePage from './homepage/loadHomePage';
+
+loadHomePage();
