@@ -3,6 +3,7 @@ import { postLike, getLikes } from '../likes/apiInvolvement';
 import counter from './counter';
 import Comments from '../comments/comments';
 import { postComment } from '../comments/involvementApi';
+import Counter from '../comments/commentCounter';
 
 const display = (obj) => {
   const cardsContainer = document.querySelector('.cards-container');
@@ -31,18 +32,18 @@ const display = (obj) => {
   comments.forEach((comment) => {
     comment.addEventListener('click', () => {
       modal.classList.remove('d-none');
-      // get the id of the card
       const cardNodes = comment.parentNode.parentNode.parentNode.childNodes;
       // get id of the card
+
       const parentNodesid = comment.parentElement.parentElement.parentElement.id;
       const details = getDetails(parentNodesid);
-      // let detailData = [];
       const detailData = details.then((data) => data.drinks[0]);
       const imgSrc = cardNodes[1].getAttribute('src');
       const title = cardNodes[3].childNodes[1].innerHTML;
       const div = document.createElement('div');
       const div2 = document.createElement('div');
       const ul = document.createElement('ul');
+      ul.classList.add('unique');
       const addCommnt = (username, comment) => {
         const li = document.createElement('li');
         const span = document.createElement('span');
@@ -63,7 +64,8 @@ const display = (obj) => {
       };
       const callComent = () => Comments.getComments(parentNodesid).then((data) => {
         const h3 = document.createElement('h3');
-        h3.innerHTML = `Comments(${data.length})`;
+
+        h3.innerHTML = `Comments(${Counter(data)})`;
         if (data.length === 0) {
           div2.innerHTML = 'No Comments Yet';
         } else {
@@ -86,6 +88,7 @@ const display = (obj) => {
               ul.appendChild(li);
               li.classList.add('d-flex');
               ul.classList.add('list-unstyled', 'col-12');
+              // ul.setAttribute('id', 'uniqueid');
               div2.appendChild(h3);
               div2.appendChild(ul);
             }
@@ -115,7 +118,7 @@ const display = (obj) => {
                           </section>
                 
                           <section class='comments d-flex flex-column align-items-center'>
-                        <div class = 'comment-list col-8'>
+                        <div class = 'comment-list col-8' id = 'uniqueid'>
                   
                         </div>
                         
@@ -161,10 +164,8 @@ const display = (obj) => {
             };
             postComment(data);
             addCommnt(data.username, data.comment);
-            data.username = '';
-            data.comment = '';
-
             // call comments with no repetitions
+            console.log(Counter());
           });
         });
       });
