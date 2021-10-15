@@ -1,4 +1,4 @@
-import Counter from '../comments/commentCounter';
+import Counter from "../src/comments/commentCounter"
 
 test('Counter should be a function', () => {
   expect(typeof Counter).toBe('function');

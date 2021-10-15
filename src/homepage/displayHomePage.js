@@ -89,7 +89,6 @@ const display = (obj) => {
               ul.appendChild(li);
               li.classList.add('d-flex');
               ul.classList.add('list-unstyled', 'col-12');
-              // ul.setAttribute('id', 'uniqueid');
               div2.appendChild(h3);
               div2.appendChild(ul);
             }
@@ -166,7 +165,6 @@ const display = (obj) => {
             postComment(data);
             addCommnt(data.username, data.comment);
             // call comments with no repetitions
-            console.log(Counter());
           });
         });
       });
