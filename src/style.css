@@ -43,6 +43,12 @@ h3 {
   width: 30px;
 }
 
+.heart-like-button::before,
+.heart-like-button::after,
+.heart-like-button:hover {
+  cursor: pointer;
+}
+
 .heart-like-button::before {
   top: -15px;
   left: 0;
@@ -57,10 +63,6 @@ h3 {
 .heart-like-button.liked::after,
 .heart-like-button.liked {
   background-color: #14279b;
-}
-
-.heart-like-button.liked {
-  animation: liked 0.4s ease;
 }
 
 .nav {
@@ -86,4 +88,15 @@ footer {
   margin-top: 5%;
   color: white;
   border-top: 2px solid #e6e9f5;
+}
+
+.comments-btn {
+  position: absolute;
+  top: 90%;
+  left: 10%;
+  min-width: 80%;
+}
+
+.likesp {
+  padding-left: 0 !important;
 }
