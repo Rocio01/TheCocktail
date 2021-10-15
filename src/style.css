@@ -93,3 +93,14 @@ footer {
   color: white;
   border-top: 2px solid #e6e9f5;
 }
+
+.comments-btn{
+  position: absolute;
+  top: 90%;  
+  left: 10%;
+  min-width: 80%;
+}
+
+.likesp {
+  padding-left: 0 !important;
+}

@@ -10,15 +10,16 @@ const display = (obj) => {
     const divCol = document.createElement('div');
     cardsContainer.appendChild(divCol);
     divCol.className = 'col';
-    divCol.innerHTML = `<div class='card card-drink h-100' id ='${drink.idDrink}'>
+    divCol.innerHTML = `<div class='card card-drink h-100 container' id ='${drink.idDrink}'>
                           <img src='${drink.strDrinkThumb}' class='card-img-top p-3' alt='...'>
-                          <div class='card-body'>
-                            <h5 class='card-title'>${drink.strDrink}</h5>
-                            <div class='card-text container'>
-                              <button type='button' class='btn comments btn-outline-dark float-start'>Comments</button>
-                                <div class='heart-container container' id='item-${drink.idDrink}'>                         
-                                <div class='heart-like-button float-end'></div>  
+                          <div class='card-body row mb-5'>
+                            <h5 class='card-title col'>${drink.strDrink}</h5>
+                            <div class='card-text container col'>
+                             
+                                <div class='heart-container container row col-sm' id='item-${drink.idDrink}'>                         
+                                <div class='heart-like-button ml-5'></div>  
                                 </div>
+                                <button type='button' class='btn comments comments-btn btn-outline-dark'>Comments</button>
                             </div>   
                           
                           </div>
@@ -190,7 +191,7 @@ const display = (obj) => {
 
   heartsContainer.forEach((heartContainer) => {
     const likesp = document.createElement('p');
-    likesp.className = 'likesp float-end p-2';
+    likesp.className = 'likesp pt-3';
     heartContainer.appendChild(likesp);
     getLikes(heartContainer);
   });
