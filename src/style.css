@@ -46,7 +46,7 @@ h3 {
 .heart-like-button::before,
 .heart-like-button::after,
 .heart-like-button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .heart-like-button::before {
@@ -94,9 +94,9 @@ footer {
   border-top: 2px solid #e6e9f5;
 }
 
-.comments-btn{
+.comments-btn {
   position: absolute;
-  top: 90%;  
+  top: 90%;
   left: 10%;
   min-width: 80%;
 }
